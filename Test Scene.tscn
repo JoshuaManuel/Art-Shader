@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccgmlrgtnqix2"]
+
+[ext_resource type="Shader" path="res://DepthShader.gdshader" id="1_ppel4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l321f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2b14a"]
+render_priority = 0
+shader = ExtResource("1_ppel4")
+shader_parameter/zNear = 1.0
+shader_parameter/zFar = 1000.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_8gf0o"]
+material = SubResource("ShaderMaterial_2b14a")
+size = Vector2(2, 2)
+
+[sub_resource type="TorusMesh" id="TorusMesh_3o82q"]
+
+[sub_resource type="Environment" id="Environment_l74gr"]
+ambient_light_color = Color(0.443137, 0.894118, 0.968627, 1)
+ambient_light_energy = 1.12
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5kyw4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yamcd"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.2578, 0, 0, 0, 1, 0, 0, 0, 2.33797, 0, 0, 0)
+mesh = SubResource("PlaneMesh_l321f")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10716, 3.19586)
+
+[node name="Shader" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.0874217, -0.109385)
+mesh = SubResource("QuadMesh_8gf0o")
+skeleton = NodePath("../..")
+
+[node name="Torus" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.801128, -0.598492, 0, 0.598492, 0.801128, 0, 0.969997, 0)
+mesh = SubResource("TorusMesh_3o82q")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l74gr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.319869, -0.680086, 0.659671, 0, 0.696251, 0.717798, -0.947462, 0.229601, -0.222709, 1.3735, 4.50978, 0)
+
+[node name="Cylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.924086, -0.356856, -0.136813, 0, 0.357977, -0.93373, 0.382184, 0.862848, 0.330802, -1.55647, 1.3263, -0.980455)
+mesh = SubResource("CylinderMesh_5kyw4")
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.770953, 0.803105, 1.84431)
+mesh = SubResource("SphereMesh_yamcd")
+
+[node name="Sphere2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.770953, 3.97796, -6.3979)
+mesh = SubResource("SphereMesh_yamcd")
