@@ -1,14 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccgmlrgtnqix2"]
+[gd_scene load_steps=11 format=3 uid="uid://ccgmlrgtnqix2"]
 
 [ext_resource type="Shader" path="res://DepthShader.gdshader" id="1_ppel4"]
+[ext_resource type="Shader" path="res://Moebius.gdshader" id="1_r77m7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l321f"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pm115"]
+shader = ExtResource("1_r77m7")
+shader_parameter/threshold = 0.053
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2b14a"]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_pm115")
 shader = ExtResource("1_ppel4")
 shader_parameter/zNear = 1.0
-shader_parameter/zFar = 1000.0
+shader_parameter/zFar = 105.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_8gf0o"]
 material = SubResource("ShaderMaterial_2b14a")
